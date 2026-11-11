@@ -16,3 +16,16 @@
 .gif-title{padding:9px 10px 11px;color:#e6e3eb;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
 .error-state p{color:#ff9dbd}
 .giphy-attribution{margin:6px 0 0;color:#9998a4;font-size:11px;letter-spacing:.2px}
+.gif-card{appearance:none;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.gif-modal{width:min(92vw,720px);max-width:720px;max-height:90vh;overflow:auto;padding:20px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:#111116;color:var(--text);box-shadow:0 24px 80px rgba(0,0,0,.6)}
+.gif-modal::backdrop{background:rgba(4,4,8,.82);backdrop-filter:blur(5px)}
+.gif-modal-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:14px}
+.gif-modal-header h2{margin:0;font-size:20px;letter-spacing:-.5px}
+.modal-close{width:38px;height:38px;flex:0 0 auto;border:1px solid var(--line);border-radius:10px;background:#1a1920;color:#fff;font-size:25px;line-height:1;cursor:pointer}
+.modal-preview{display:block;width:100%;max-height:62vh;object-fit:contain;border-radius:11px;background:#09090d}
+.modal-gif-title{margin:14px 0 0;color:#e6e3eb;font-size:14px;overflow-wrap:anywhere}
+.modal-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.copy-gif-button,.open-giphy-link{min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 15px;border:0;border-radius:9px;background:linear-gradient(110deg,#f83d91,#a245ed);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.open-giphy-link{border:1px solid rgba(255,255,255,.14);background:#1a1920}
+.copy-status{min-height:1.4em;margin:10px 0 0;color:#a6e9bf;font-size:12px}
+@media(max-width:520px){.gif-modal{width:calc(100% - 24px);padding:14px}.modal-preview{max-height:55vh}.modal-actions>*{flex:1}}

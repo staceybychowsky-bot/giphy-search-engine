@@ -28,7 +28,7 @@ function createGifCard(gif) {
 
   const image = document.createElement('img');
   image.src = gif.images?.fixed_width?.webp || gif.images?.fixed_width?.url || gif.images?.original?.url || '';
-  image.alt = gif.title || 'GIF result';
+  image.alt = gif.title || 'Trending GIF';
   image.loading = 'lazy';
   image.decoding = 'async';
   card.append(image);
@@ -77,57 +77,5 @@ async function fetchTrendingGifs() {
   }
 }
 
-const searchForm = document.querySelector('#search-form');
-const searchInput = document.querySelector('#search-input');
-
-async function fetchSearchGifs(keyword) {
-  if (!resultsContainer) return;
-
-  showMessage(`Searching for “${keyword}”…`);
-  resultsContainer.setAttribute('aria-busy', 'true');
-
-  const params = new URLSearchParams({
-    api_key: GIPHY_API_KEY,
-    q: keyword,
-    limit: String(TRENDING_LIMIT),
-    rating: CONTENT_RATING,
-  });
-
-  try {
-    const response = await fetch(`https://api.giphy.com/v1/gifs/search?${params}`);
-    if (!response.ok) {
-      throw new Error(`GIPHY returned status ${response.status}`);
-    }
-
-    const payload = await response.json();
-    const gifs = Array.isArray(payload.data) ? payload.data : [];
-    if (gifs.length === 0) {
-      showMessage(`No GIFs found for “${keyword}”. Try another search.`);
-      return;
-    }
-
-    resultsContainer.replaceChildren(...gifs.map(createGifCard));
-  } catch (error) {
-    console.error('Unable to search GIFs:', error);
-    showMessage('We couldn’t complete your search. Please check your connection and try again.', 'error');
-  } finally {
-    resultsContainer.setAttribute('aria-busy', 'false');
-  }
-}
-
-if (searchForm && searchInput) {
-  searchForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const keyword = searchInput.value.trim();
-    if (!keyword) {
-      searchInput.focus();
-      showMessage('Enter a keyword to search for GIFs.');
-      return;
-    }
-    fetchSearchGifs(keyword);
-  });
-}
-
 fetchTrendingGifs();
-
 
