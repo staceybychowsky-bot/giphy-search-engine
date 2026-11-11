@@ -51,3 +51,28 @@
 .form-status.is-error{color:#ff9dbd}
 .form-status.is-success{color:#a6e9bf}
 @media(max-width:520px){.contact-page{padding:38px 14px 48px}.contact-panel{padding:24px 18px}.contact-panel h1{font-size:40px}}
+/* Shared interaction and loading states */
+:root{--space-section:clamp(40px,6vw,68px);--focus-ring:0 0 0 3px rgba(183,109,255,.28)}
+.nav-link,.footer-links a,.text-link{transition:color .18s ease,opacity .18s ease}
+.nav-link:focus-visible,.footer-links a:focus-visible,.text-link:focus-visible,.brand:focus-visible{outline:2px solid #bb70ff;outline-offset:4px;border-radius:3px}
+button,.contact-submit,.open-giphy-link,.copy-gif-button{transition:filter .18s ease,transform .18s ease,box-shadow .18s ease}
+button:hover,.contact-submit:hover,.copy-gif-button:hover,.open-giphy-link:hover{filter:brightness(1.12)}
+button:active,.contact-submit:active,.copy-gif-button:active,.open-giphy-link:active{transform:translateY(1px)}
+button:focus-visible,.contact-submit:focus-visible,.copy-gif-button:focus-visible,.open-giphy-link:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.gif-card{transition:transform .2s cubic-bezier(.2,.8,.2,1),border-color .2s ease,box-shadow .2s ease}
+.gif-card:hover,.gif-card:focus-visible{transform:translateY(-4px) scale(1.01)}
+.empty-state{min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.empty-state p{margin:0;text-align:center}
+.loading-spinner{width:26px;height:26px;border:2px solid rgba(255,255,255,.16);border-top-color:#d28aff;border-right-color:#fb3c8c;border-radius:50%;animation:spinner-turn .75s linear infinite}
+@keyframes spinner-turn{to{transform:rotate(360deg)}}
+.gif-modal[open]{animation:modal-enter .22s cubic-bezier(.2,.8,.2,1) both}
+.gif-modal[open]::backdrop{animation:backdrop-enter .2s ease both}
+@keyframes modal-enter{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes backdrop-enter{from{background:rgba(4,4,8,0)}to{background:rgba(4,4,8,.82)}}
+.search-form button{transition:filter .18s ease,transform .18s ease,box-shadow .18s ease}
+.search-form button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* Shared vertical rhythm across the main sections */
+.trending-section:not(.trending-page){padding:var(--space-section) 0 calc(var(--space-section) + 8px)}
+.trending-page{padding-top:var(--space-section);padding-bottom:calc(var(--space-section) + 8px)}
+.contact-page{padding-top:var(--space-section);padding-bottom:calc(var(--space-section) + 8px)}

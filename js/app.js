@@ -23,6 +23,12 @@ function showMessage(message, kind = 'info') {
   const state = document.createElement('div');
   state.className = `empty-state ${kind}-state`;
   state.setAttribute('role', kind === 'error' ? 'alert' : 'status');
+  if (kind === 'loading') {
+    const spinner = document.createElement('span');
+    spinner.className = 'loading-spinner';
+    spinner.setAttribute('aria-hidden', 'true');
+    state.append(spinner);
+  }
   const text = document.createElement('p');
   text.textContent = message;
   state.append(text);
@@ -63,7 +69,7 @@ function renderGifs(gifs, emptyMessage) {
 
 async function requestGifs(url, params, loadingMessage, emptyMessage, errorMessage) {
   if (!resultsContainer) return;
-  showMessage(loadingMessage);
+  showMessage(loadingMessage, 'loading');
   resultsContainer.setAttribute('aria-busy', 'true');
   try {
     const response = await fetch(`${url}?${params}`);
@@ -154,3 +160,4 @@ copyGifUrlButton?.addEventListener('click', async () => {
 });
 
 fetchTrendingGifs();
+
